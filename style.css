@@ -1,0 +1,350 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+    background: -webkit-linear-gradient(to right, rgba(255, 120, 180, 0.8), rgba(135, 206, 250, 0.8));
+    background: linear-gradient(to right, rgba(255, 120, 180, 0.8), rgba(135, 206, 250, 0.8));
+}
+
+
+
+    
+
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100%;
+    background-color: transparent;
+}
+
+#search {
+    height: 40px;
+    width: 70%;
+    background-color: #fff;
+    border-radius: 30px;
+    padding-left: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #000;
+    font-size: medium;
+    font-weight: bold;
+    border: none;
+
+}
+
+
+.vulcan {
+    width: 20px;
+}
+
+#button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    font-size: medium;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    height:400px;
+    width: 1000px;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    border-radius: 21px;
+}
+
+.city {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 30%;
+    background-color: transparent;
+    padding-left: 10px;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    padding-left: 10px;
+    font-size:x-large;
+    font-weight: bold;
+}
+
+#des {
+    padding-left: 10px;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    padding-top: 150px;
+    font-size:60px;
+    font-weight: bold;
+}
+
+
+.extra {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    background-color: transparent;
+}
+.cityname {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    margin-top: 10px;
+    padding-left: 10px;
+    font-size:21px;
+    font-weight: bold;
+}
+
+.art-title {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    margin-top: 140px;
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.all-summary {
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    margin-top: 10px;
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 1px;
+    
+}
+#temp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 20%;
+    background-color: transparent;
+    padding-left: 10px;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    padding-left: 10px;
+    font-size: 110px;
+    font-weight: bold;
+}
+
+.forcast {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: centerd;
+    margin-top: 15px;
+    border-radius: 21px;
+    height: 150px;
+    width: 80%;
+    background-color: transparent;
+    margin-left:90px;
+}
+
+.next {
+    height: 100%;
+    width: 15%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    border-radius: 21px;
+    cursor: pointer;
+}
+
+.fr {
+    width: 5px;
+    height: 5px;
+}
+
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20px;
+    flex-direction: row;
+    height: 45px;
+    width: 75%;
+    background-color:rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    backdrop-filter: blur(3px);
+    margin-top: 70px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #fff;
+    font-weight: bold;
+    font-size: small;
+
+}
+
+
+#icon-a {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #fff;
+    font-weight: bold;
+    font-size: x-large;
+    text-decoration: none;
+
+}
+
+#icon-c {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+}
+
+
+
+.horixon-ajax {
+    width: 40px;
+}
+
+a {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #fff;
+    font-weight: bold;
+    font-size: small;
+    text-decoration: none;
+}
+
+
+
+@media  (max-width: 768px){
+    
+
+    .nav {
+        width:100% ;
+    }
+
+    #search {
+        width: 80% !important;
+    }
+
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+    }
+
+    .card {
+        flex-direction: column;
+        width:95% !important;
+        
+        height: 700px;
+    }
+    
+    .city {
+        font-size:xx-large ;
+        padding-left: 10px;
+    }
+
+    
+    #temp {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size:90px;
+        padding-left: 40%;
+    }
+
+   #des {
+        font-size: 40px;
+        padding-left: 240px;
+        padding-top: 100px;
+    }
+   
+    .art-title {
+        font-size: large;
+        padding-right: 8px;
+        width: 100%;
+        padding-left: 90px;
+    }
+
+    .all-summary {
+        font-size: medium;
+        padding-left:10px;
+        padding-top: 15px;
+        width: 310px;
+        background-color: transparent;
+        padding-bottom: 50px;
+        text-align: center;
+
+
+        
+    }
+
+    .extra {
+        padding-left: 20px
+    }
+
+    .vulcan {
+        width: 10px;
+    }
+
+    .forcast { 
+        display: none;
+        
+    }
+
+    .fr {
+        height: 40px;
+    }
+    .next {
+        width: 80%;
+        margin-right: 30px;
+       
+    }
+
+    .footer {
+        width: 100%;
+        margin-top: 45px;
+        width: 95%;
+    }
+
+    .horixon-ajax {
+        width: 20px;
+    }
+}

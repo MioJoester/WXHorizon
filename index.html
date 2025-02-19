@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HorizonWX</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+
+    <center>
+
+    
+
+    <div class="nav">
+        <input id="search" placeholder="search for a location">
+        <div class="vulcan"></div>
+        <div id="button"> <i class="fas fa-search"></i></div>
+
+    </div>
+
+
+    <div class="card">
+        <div id="temp"><i class="fa-solid fa-cloud"></i></div>
+        <div class="city">
+            <div class="cityname"></div>
+            <div id="des"></div>
+            
+        </div>
+
+        <div class="extra">
+
+            <div class="art-title"></div>
+             <div class="all-summary"><p></p></div> 
+
+        </div>
+    </div>
+
+   
+  
+ 
+    
+<div class="footer">
+    <a href="https://open-meteo.com/en/docs" target="_blank">API Credits</a>
+
+    <div class="horixon-ajax"></div>
+
+    <a href="https://open-meteo.com" target="_blank">Data credits</a>
+
+    <div class="horixon-ajax"></div>
+
+    <a href="https://miojoester.github.io/task-141-stalker/" target="_blank" id="icon-a"><i class="fa-solid fa-address-card"></i></a>
+
+    <div class="horixon-ajax"></div>
+
+    <a href="https://github.com/MioJoester" target="_blank" id="icon-a"><i class="fab fa-github"></i></a>
+
+    
+    <div class="horixon-ajax"></div>
+
+    <a href="https://discord.com/users/1274662028820217911" target="_blank" id="icon-a"><i class="fab fa-discord"></i></a>
+
+    
+    <div class="horixon-ajax"></div>
+
+    <button id="icon-c"><i class="fas fa-chain"></i></button>
+</div>
+</center>
+
+
+
+
+   
+    
+</body>
+
+<script>
+
+    
+    
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=40.7128&longitude=-74.0060&current_weather=true`)
+        .then(response => response.json()) // Convert response to JSON
+        .then(data => {
+            console.log("Default NYC Weather Data:", data);
+            
+            const temperature = data.current_weather.temperature;
+            const weatherCode = data.current_weather.weathercode; // Fix: should match API key
+
+            // Update UI elements
+            document.getElementById("des").innerHTML = `${temperature}°C`;  
+            document.querySelector(".all-summary").innerHTML = 
+                `According to Open-Meteo, the weather in <strong>New York City</strong> will be around<strong>   ${temperature}°C  </strong>.`;
+
+            const iconClass = getWeatherIcon(weatherCode, temperature);
+            document.getElementById("temp").innerHTML = `<i class="${iconClass}"></i>`;
+        })
+        .catch(error => console.error("Error fetching default weather data:", error));
+});
+
+alert ("By default it will show weather of New York city, you can search your desired location from searchbar")
+
+const cityCoordinates = {
+    "New York": { lat: 40.7128, lon: -74.0060 },
+    "Los Angeles": { lat: 34.0522, lon: -118.2437 },
+    "Chicago": { lat: 41.8781, lon: -87.6298 },
+    "Houston": { lat: 29.7604, lon: -95.3698 },
+    "London": { lat: 51.5074, lon: -0.1278 },
+    "Paris": { lat: 48.8566, lon: 2.3522 },
+    "Berlin": { lat: 52.5200, lon: 13.4050 },
+    "Madrid": { lat: 40.4168, lon: -3.7038 },
+    "Rome": { lat: 41.9028, lon: 12.4964 },
+    "Tokyo": { lat: 35.6895, lon: 139.6917 },
+    "Seoul": { lat: 37.5665, lon: 126.9780 },
+    "Shanghai": { lat: 31.2304, lon: 121.4737 },
+    "Beijing": { lat: 39.9042, lon: 116.4074 },
+    "Sydney": { lat: -33.8688, lon: 151.2093 },
+    "Toronto": { lat: 43.651070, lon: -79.347015 },
+    "Dubai": { lat: 25.276987, lon: 55.296249 },
+    "Moscow": { lat: 55.7558, lon: 37.6173 },
+    "Mumbai": { lat: 19.0760, lon: 72.8777 },
+    "Delhi": { lat: 28.6139, lon: 77.2090 },
+    "Singapore": { lat: 1.3521, lon: 103.8198 },
+    "Bangkok": { lat: 13.7563, lon: 100.5018 },
+    "Istanbul": { lat: 41.0082, lon: 28.9784 },
+    "Mexico City": { lat: 19.4326, lon: -99.1332 },
+    "Buenos Aires": { lat: -34.6037, lon: -58.3816 },
+    "Cairo": { lat: 30.0444, lon: 31.2357 },
+    "Cape Town": { lat: -33.9249, lon: 18.4241 },
+    "Wellington": {lat: -41.2865,lon: 174.7762},
+    
+
+
+
+    "new York": { lat: 40.7128, lon: -74.0060 },
+    "los Angeles": { lat: 34.0522, lon: -118.2437 },
+    "chicago": { lat: 41.8781, lon: -87.6298 }, 
+    "houston": { lat: 29.7604, lon: -95.3698 },
+    "london": { lat: 51.5074, lon: -0.1278 },
+    "paris": { lat: 48.8566, lon: 2.3522 },
+    "berlin": { lat: 52.5200, lon: 13.4050 },
+    "madrid": { lat: 40.4168, lon: -3.7038 },
+    "rome": { lat: 41.9028, lon: 12.4964 },
+    "tokyo": { lat: 35.6895, lon: 139.6917 },
+    "seoul": { lat: 37.5665, lon: 126.9780 },
+    "shanghai": { lat: 31.2304, lon: 121.4737 },
+    "beijing": { lat: 39.9042, lon: 116.4074 },
+    "sydney": { lat: -33.8688, lon: 151.2093 },
+    "toronto": { lat: 43.651070, lon: -79.347015 },
+    "dubai": { lat: 25.276987, lon: 55.296249 },
+    "moscow": { lat: 55.7558, lon: 37.6173 },
+    "mumbai": { lat: 19.0760, lon: 72.8777 },
+    "delhi": { lat: 28.6139, lon: 77.2090 },
+    "singapore": { lat: 1.3521, lon: 103.8198 },
+    "bangkok": { lat: 13.7563, lon: 100.5018 },
+    "istanbul": { lat: 41.0082, lon: 28.9784 },
+    "mexico City": { lat: 19.4326, lon: -99.1332 },
+    "buenos Aires": { lat: -34.6037, lon: -58.3816 },
+    "cairo": { lat: 30.0444, lon: 31.2357 },
+    "cape Town": { lat: -33.9249, lon: 18.4241 },
+    "wellington": {lat: -41.2865,lon: 174.7762}
+};
+
+
+
+
+document.getElementById("button").addEventListener("click", () => {
+    const city = document.getElementById("search").value.trim();  
+
+    if (cityCoordinates[city]) {
+        const { lat, lon } = cityCoordinates[city];
+
+        // Fetch weather data
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Weather Data:", data);
+                
+                const temperature = data.current_weather.temperature;
+                const weatherCode = data.current_weather.weathercode;  
+
+                document.getElementById("des").innerHTML = `${temperature}°C`;  
+
+                const iconClass = getWeatherIcon(weatherCode, temperature);
+                const weatherCondition = getWeatherDescription(weatherCode);
+
+              
+                document.getElementById("temp").innerHTML = `<i class="${iconClass}"></i>`;
+
+             
+                document.querySelector(".all-summary").innerHTML = 
+                    `According to Open-Meteo, the weather in <strong>${city}</strong> will be around  <strong>${temperature}°C</strong>.`;
+            })
+            .catch(error => console.error("Error fetching weather data:", error));
+    } else {
+        alert("City not found! Please enter a valid city name.");
+    }
+});
+
+
+function getWeatherIcon(weatherCode, temperature) {
+    if (weatherCode >= 95) return "fa-solid fa-cloud-bolt"; 
+    if (weatherCode >= 80) return "fa-solid fa-cloud-showers-heavy"; 
+    if (weatherCode >= 60) return "fa-solid fa-cloud-rain"; 
+    if (weatherCode >= 51) return "fa-solid fa-cloud-sun-rain";
+    if (weatherCode >= 45) return "fa-solid fa-smog"; 
+    if (weatherCode >= 40) return "fa-solid fa-cloud"; 
+    if (weatherCode >= 30) return "fa-solid fa-snowflake"; 
+    if (weatherCode >= 20) return "fa-solid fa-wind"; 
+    
+    
+    if (temperature >= 30) return "fa-solid fa-sun"; 
+    if (temperature >= 20) return "fa-solid fa-cloud-sun"; 
+    if (temperature >= 10) return "fa-solid fa-cloud-sun"; 
+    return "fa-solid fa-snowflake"; 
+}
+
+
+function getWeatherDescription(weatherCode) {
+    if (weatherCode >= 95) return "stormy with thunderstorms ⛈️";
+    if (weatherCode >= 80) return "rainy 🌧️";
+    if (weatherCode >= 60) return "light rain 🌦️";
+    if (weatherCode >= 51) return "drizzly 🌦️";
+    if (weatherCode >= 45) return "foggy 🌫️";
+    if (weatherCode >= 40) return "cloudy ☁️";
+    if (weatherCode >= 30) return "snowy ❄️";
+    if (weatherCode >= 20) return "windy 💨";
+    return "Clear"
+}
+
+document.getElementById("icon-c").addEventListener("click", () => {
+    const url = window.location.href; // Get current page URL
+
+    navigator.clipboard.writeText(url).then(() => {
+        alert("🔗 Link copied to clipboard!");
+    }).catch(err => {
+        console.error("Failed to copy:", err);
+    });
+});
+
+</script>
+
+
+</html>
