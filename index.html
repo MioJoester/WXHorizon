@@ -78,8 +78,6 @@
 
 <script>
 
-    
-    
 
 document.addEventListener("DOMContentLoaded", () => {
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=40.7128&longitude=-74.0060&current_weather=true`)
@@ -103,634 +101,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
 alert ("By default it will show weather of New York city, you can search your desired location from searchbar")
 
-const cityCoordinates = {
-     "New York": { lat: 40.7128, lon: -74.0060 },
-    "Los Angeles": { lat: 34.0522, lon: -118.2437 },
-    "Chicago": { lat: 41.8781, lon: -87.6298 },
-    "Houston": { lat: 29.7604, lon: -95.3698 },
-    "London": { lat: 51.5074, lon: -0.1278 },
-    "Paris": { lat: 48.8566, lon: 2.3522 },
-    "Berlin": { lat: 52.5200, lon: 13.4050 },
-    "Madrid": { lat: 40.4168, lon: -3.7038 },
-    "Rome": { lat: 41.9028, lon: 12.4964 },
-    "Tokyo": { lat: 35.6895, lon: 139.6917 },
-    "Seoul": { lat: 37.5665, lon: 126.9780 },
-    "Shanghai": { lat: 31.2304, lon: 121.4737 },
-    "Beijing": { lat: 39.9042, lon: 116.4074 },
-    "Sydney": { lat: -33.8688, lon: 151.2093 },
-    "Toronto": { lat: 43.651070, lon: -79.347015 },
-    "Dubai": { lat: 25.276987, lon: 55.296249 },
-    "Moscow": { lat: 55.7558, lon: 37.6173 },
-    "Mumbai": { lat: 19.0760, lon: 72.8777 },
-    "Delhi": { lat: 28.6139, lon: 77.2090 },
-    "Singapore": { lat: 1.3521, lon: 103.8198 },
-    "Bangkok": { lat: 13.7563, lon: 100.5018 },
-    "Istanbul": { lat: 41.0082, lon: 28.9784 },
-    "Mexico City": { lat: 19.4326, lon: -99.1332 },
-    "Buenos Aires": { lat: -34.6037, lon: -58.3816 },
-    "Cairo": { lat: 30.0444, lon: 31.2357 },
-    "Cape Town": { lat: -33.9249, lon: 18.4241 },
-    "Wellington": {lat: -41.2865, lon: 174.7762},
-    // Major cities in India
-    "Bangalore": { lat: 12.9716, lon: 77.5946 },
-    "Chennai": { lat: 13.0827, lon: 80.2707 },
-    "Kolkata": { lat: 22.5726, lon: 88.3639 },
-    "Hyderabad": { lat: 17.3850, lon: 78.4867 },
-    "Pune": { lat: 18.5204, lon: 73.8567 },
-    "Ahmedabad": { lat: 23.0225, lon: 72.5714 },
-    "Jaipur": { lat: 26.9124, lon: 75.7873 },
-    "Lucknow": { lat: 26.8467, lon: 80.9462 },
-    // Major cities in China
-    "Beijing": { lat: 39.9042, lon: 116.4074 },
-    "Shanghai": { lat: 31.2304, lon: 121.4737 },
-    "Guangzhou": { lat: 23.1291, lon: 113.2644 },
-    "Shenzhen": { lat: 22.5431, lon: 114.0579 },
-    "Chengdu": { lat: 30.5728, lon: 104.0668 },
-    "Wuhan": { lat: 30.5928, lon: 114.3055 },
-    "Chongqing": { lat: 29.4316, lon: 106.9123 },
-    "Tianjin": { lat: 39.3434, lon: 117.3616 },
-    "Nanjing": { lat: 32.0603, lon: 118.7969 },
-    "Hangzhou": { lat: 30.2741, lon: 120.1551 },
-    //Major cities in Gujarat
-    "Surat": { lat: 21.1702, lon: 72.8311 },
-    "Vadodara": { lat: 22.3072, lon: 73.1812 },
-    "Rajkot": { lat: 22.3039, lon: 70.8022 },
-    "Bhavnagar": { lat: 21.7645, lon: 72.1519 },
-    "Jamnagar": { lat: 22.4707, lon: 70.0577 },
-    "Gandhinagar": { lat: 23.2156, lon: 72.6369 },
-    "Junagadh": { lat: 21.5222, lon: 70.4579 },
-    "Anand": { lat: 22.5645, lon: 72.9289 },
-    "Bharuch": { lat: 21.7051, lon: 72.9959 },
-    "Mehsana": { lat: 23.5879, lon: 72.3693 },
-    "Navsari": { lat: 20.9467, lon: 72.9520 },
-    "Morbi": { lat: 22.8119, lon: 70.8236 },
-    "Valsad": { lat: 20.5992, lon: 72.9342 },
-    "Porbandar": { lat: 21.6417, lon: 69.6293 },
-    //Major cities in Maharashtra
-    "Pune": { lat: 18.5204, lon: 73.8567 },
-    "Nagpur": { lat: 21.1458, lon: 79.0882 },
-    "Thane": { lat: 19.2183, lon: 72.9781 },
-    "Nashik": { lat: 19.9975, lon: 73.7898 },
-    "Aurangabad": { lat: 19.8762, lon: 75.3433 },
-    "Solapur": { lat: 17.6599, lon: 75.9064 },
-    "Amravati": { lat: 20.9374, lon: 77.7796 },
-    "Kolhapur": { lat: 16.7050, lon: 74.2433 },
-    "Sangli": { lat: 16.8524, lon: 74.5815 },
-    "Jalgaon": { lat: 21.0077, lon: 75.5626 },
-    "Akola": { lat: 20.7074, lon: 77.0028 },
-    "Latur": { lat: 18.4088, lon: 76.5604 },
-    "Ahmednagar": { lat: 19.0948, lon: 74.7480 },
-    "Chandrapur": { lat: 19.9615, lon: 79.2961 },
-    "Nanded": { lat: 19.1383, lon: 77.3210 },
-    "Ratnagiri": { lat: 16.9902, lon: 73.3120 },
-    "Dhule": { lat: 20.9042, lon: 74.7749 },
-    "Beed": { lat: 18.9878, lon: 75.7600 },
-    "Parbhani": { lat: 19.2685, lon: 76.7708 },
-    //Major cities in Rajasthan
-    "Jodhpur": { lat: 26.2389, lon: 73.0243 },
-    "Udaipur": { lat: 24.5854, lon: 73.7125 },
-    "Kota": { lat: 25.2138, lon: 75.8648 },
-    "Bikaner": { lat: 28.0229, lon: 73.3119 },
-    "Ajmer": { lat: 26.4499, lon: 74.6399 },
-    "Bhilwara": { lat: 25.3478, lon: 74.6408 },
-    "Alwar": { lat: 27.5535, lon: 76.6346 },
-    "Sikar": { lat: 27.6094, lon: 75.1399 },
-    "Barmer": { lat: 25.7523, lon: 71.3989 },
-    "Chittorgarh": { lat: 24.8887, lon: 74.6269 },
-    "Banswara": { lat: 23.5461, lon: 74.4346 },
-    "Jhunjhunu": { lat: 28.1289, lon: 75.3992 },
-    "Tonk": { lat: 26.1664, lon: 75.7894 },
-    "Nagaur": { lat: 27.2020, lon: 73.7333 },
-    //Major cities in MP
-    "Bhopal": { lat: 23.2599, lon: 77.4126 },
-    "Indore": { lat: 22.7196, lon: 75.8577 },
-    "Gwalior": { lat: 26.2183, lon: 78.1828 },
-    "Jabalpur": { lat: 23.1815, lon: 79.9864 },
-    "Ujjain": { lat: 23.1765, lon: 75.7885 },
-    "Sagar": { lat: 23.8388, lon: 78.7378 },
-    "Ratlam": { lat: 23.3342, lon: 75.0374 },
-    "Rewa": { lat: 24.5362, lon: 81.3041 },
-    "Satna": { lat: 24.5822, lon: 80.8245 },
-    "Dewas": { lat: 22.9623, lon: 76.0508 },
-    "Chhindwara": { lat: 22.0574, lon: 78.9382 },
-    "Morena": { lat: 26.4980, lon: 77.9941 },
-    "Khandwa": { lat: 21.8258, lon: 76.3526 },
-    "Vidisha": { lat: 23.5251, lon: 77.8131 },
-    "Shivpuri": { lat: 25.4232, lon: 77.6626 },
-    "Neemuch": { lat: 24.4737, lon: 74.8726 },
-    "Mandsaur": { lat: 24.0713, lon: 75.0693 },
-    "Hoshangabad": { lat: 22.7441, lon: 77.7369 },
-    "Sehore": { lat: 23.1997, lon: 77.0822 },
-    "Balaghat": { lat: 21.8142, lon: 80.1849 },
-    //Major citis in Kerela 100% litercy sarr
-    "Thiruvananthapuram": { lat: 8.5241, lon: 76.9366 },
-    "Kochi": { lat: 9.9312, lon: 76.2673 },
-    "Kozhikode": { lat: 11.2588, lon: 75.7804 },
-    "Thrissur": { lat: 10.5276, lon: 76.2144 },
-    "Kollam": { lat: 8.8932, lon: 76.6141 },
-    "Palakkad": { lat: 10.7867, lon: 76.6548 },
-    "Alappuzha": { lat: 9.4981, lon: 76.3388 },
-    "Kannur": { lat: 11.8745, lon: 75.3704 },
-    "Kottayam": { lat: 9.5916, lon: 76.5222 },
-    "Malappuram": { lat: 11.0736, lon: 76.0743 },
-    "Pathanamthitta": { lat: 9.2644, lon: 76.7870 },
-    "Idukki": { lat: 9.8490, lon: 76.9852 },
-    "Wayanad": { lat: 11.6854, lon: 76.1320 },
-    "Kasargod": { lat: 12.5000, lon: 74.9860 },
-    //Major cities in Tamilnadu, No Hindi sarr🤡
-    "Coimbatore": { lat: 11.0168, lon: 76.9558 },
-    "Madurai": { lat: 9.9252, lon: 78.1198 },
-    "Tiruchirappalli": { lat: 10.7905, lon: 78.7047 },
-    "Salem": { lat: 11.6643, lon: 78.1460 },
-    "Tirunelveli": { lat: 8.7139, lon: 77.7567 },
-    "Erode": { lat: 11.3410, lon: 77.7172 },
-    "Vellore": { lat: 12.9165, lon: 79.1325 },
-    "Thoothukudi": { lat: 8.7642, lon: 78.1348 },
-    "Dindigul": { lat: 10.3673, lon: 77.9803 },
-    "Thanjavur": { lat: 10.7867, lon: 79.1378 },
-    "Kanchipuram": { lat: 12.8342, lon: 79.7036 },
-    "Nagapattinam": { lat: 10.7662, lon: 79.8335 },
-    "Cuddalore": { lat: 11.7447, lon: 79.7680 },
-    "Kanyakumari": { lat: 8.0883, lon: 77.5385 },
-    //Major cities in Karnataka
-     "Bengaluru": { lat: 12.9716, lon: 77.5946 },
-    "Mysuru": { lat: 12.2958, lon: 76.6394 },
-    "Mangaluru": { lat: 12.9141, lon: 74.8560 },
-    "Hubballi": { lat: 15.3647, lon: 75.1240 },
-    "Belagavi": { lat: 15.8497, lon: 74.4977 },
-    "Dharwad": { lat: 15.4589, lon: 75.0078 },
-    "Shivamogga": { lat: 13.9299, lon: 75.5681 },
-    "Ballari": { lat: 15.1394, lon: 76.9214 },
-    "Davangere": { lat: 14.4644, lon: 75.9210 },
-    "Tumakuru": { lat: 13.3381, lon: 77.1010 },
-    "Udupi": { lat: 13.3409, lon: 74.7421 },
-    "Raichur": { lat: 16.2076, lon: 77.3463 },
-    "Hassan": { lat: 13.0068, lon: 76.0996 },
-    "Bidar": { lat: 17.9107, lon: 77.5199 },
-    "Chitradurga": { lat: 14.2251, lon: 76.3980 },
-    //Major cities in West Bengla(ladesh)
-    "Kolkata": { lat: 22.5726, lon: 88.3639 },
-    "Howrah": { lat: 22.5958, lon: 88.2636 },
-    "Durgapur": { lat: 23.5204, lon: 87.3119 },
-    "Asansol": { lat: 23.6739, lon: 86.9524 },
-    "Siliguri": { lat: 26.7271, lon: 88.3953 },
-    "Malda": { lat: 25.0108, lon: 88.1411 },
-    "Kharagpur": { lat: 22.3460, lon: 87.2319 },
-    "Haldia": { lat: 22.0667, lon: 88.0698 },
-    "Bardhaman": { lat: 23.2324, lon: 87.8615 },
-    "Jalpaiguri": { lat: 26.5167, lon: 88.7333 },
-    //Major cities in Uttarpradesh-mass spawning-server
-    "Lucknow": { lat: 26.8467, lon: 80.9462 },
-    "Kanpur": { lat: 26.4499, lon: 80.3319 },
-    "Varanasi": { lat: 25.3176, lon: 82.9739 },
-    "Agra": { lat: 27.1767, lon: 78.0081 },
-    "Meerut": { lat: 28.9845, lon: 77.7064 },
-    "Prayagraj": { lat: 25.4358, lon: 81.8463 },
-    "Ghaziabad": { lat: 28.6692, lon: 77.4538 },
-    "Gorakhpur": { lat: 26.7606, lon: 83.3732 },
-    "Bareilly": { lat: 28.3670, lon: 79.4304 },
-    "Aligarh": { lat: 27.8974, lon: 78.0880 },
-    "Jhansi": { lat: 25.4484, lon: 78.5685 },
-    "Moradabad": { lat: 28.8386, lon: 78.7733 },
-    "Saharanpur": { lat: 29.9640, lon: 77.5463 },
-    "Firozabad": { lat: 27.1591, lon: 78.3958 },
-    "Mathura": { lat: 27.4924, lon: 77.6737 },
-    //Major cities in Bihar🤡🤡🤡🤡 0 civic-sense- Stealing legit everything
-    "Patna": { lat: 25.5941, lon: 85.1376 },
-    "Gaya": { lat: 24.7964, lon: 85.0077 },
-    "Bhagalpur": { lat: 25.3478, lon: 86.9824 },
-    "Muzaffarpur": { lat: 26.1209, lon: 85.3647 },
-    "Darbhanga": { lat: 26.1526, lon: 85.8970 },
-    "Purnia": { lat: 25.7781, lon: 87.4753 },
-    "Arrah": { lat: 25.5560, lon: 84.6603 },
-    "Begusarai": { lat: 25.4185, lon: 86.1294 },
-    "Katihar": { lat: 25.5384, lon: 87.5672 },
-    "Chapra": { lat: 25.7794, lon: 84.7490 },
-    //Major cities in Assam😍
-    "Guwahati": { lat: 26.1445, lon: 91.7362 },
-    "Dibrugarh": { lat: 27.4728, lon: 94.9110 },
-    "Silchar": { lat: 24.8333, lon: 92.7789 },
-    "Jorhat": { lat: 26.7504, lon: 94.2037 },
-    "Tinsukia": { lat: 27.4884, lon: 95.3558 },
-    "Tezpur": { lat: 26.6333, lon: 92.8000 },
-    "Nagaon": { lat: 26.3464, lon: 92.6848 },
-    "Diphu": { lat: 25.8390, lon: 93.4292 },
-    "Bongaigaon": { lat: 26.4770, lon: 90.5587 },
-    "Karimganj": { lat: 24.8704, lon: 92.3550 },
-    //Major cities in Utrakhand
-    "Dehradun": { lat: 30.3165, lon: 78.0322 },
-    "Haridwar": { lat: 29.9457, lon: 78.1642 },
-    "Rishikesh": { lat: 30.0869, lon: 78.2676 },
-    "Nainital": { lat: 29.3919, lon: 79.4542 },
-    "Mussoorie": { lat: 30.4590, lon: 78.0664 },
-    "Haldwani": { lat: 29.2197, lon: 79.5125 },
-    "Almora": { lat: 29.5971, lon: 79.6591 },
-    "Pithoragarh": { lat: 29.5856, lon: 80.2186 },
-    "Chamoli": { lat: 30.4031, lon: 79.3270 },
-    "Rudraprayag": { lat: 30.2857, lon: 78.9783 },
-    //Major cities in Himachal pradesh
-    "Shimla": { lat: 31.1048, lon: 77.1734 },
-    "Manali": { lat: 32.2432, lon: 77.1892 },
-    "Dharamshala": { lat: 32.2190, lon: 76.3234 },
-    "Kullu": { lat: 31.9566, lon: 77.1085 },
-    "Solan": { lat: 30.9051, lon: 77.0967 },
-    "Chamba": { lat: 32.5534, lon: 76.1258 },
-    "Mandi": { lat: 31.7082, lon: 76.9326 },
-    "Bilaspur": { lat: 31.3320, lon: 76.7510 },
-    "Kangra": { lat: 32.1007, lon: 76.2603 },
-    "Una": { lat: 31.4697, lon: 76.2708 },
-    //major cities in Jharkhand
-    "Ranchi": { lat: 23.3441, lon: 85.3096 },
-    "Jamshedpur": { lat: 22.8046, lon: 86.2029 },
-    "Dhanbad": { lat: 23.7957, lon: 86.4304 },
-    "Bokaro": { lat: 23.6693, lon: 86.1511 },
-    "Hazaribagh": { lat: 23.9966, lon: 85.3691 },
-    "Deoghar": { lat: 24.4854, lon: 86.6952 },
-    "Giridih": { lat: 24.1844, lon: 86.2960 },
-    "Ramgarh": { lat: 23.6320, lon: 85.5212 },
-    "Chaibasa": { lat: 22.5500, lon: 85.8000 },
-    "Palamu": { lat: 24.0397, lon: 84.0701 }, 
-    //Major cities in Jammu-&-Kashmir
-    "Srinagar": { lat: 34.0837, lon: 74.7973 },
-    "Jammu": { lat: 32.7266, lon: 74.8570 },
-    "Anantnag": { lat: 33.7310, lon: 75.1487 },
-    "Baramulla": { lat: 34.2021, lon: 74.3426 },
-    "Udhampur": { lat: 32.9245, lon: 75.1353 },
-    "Kupwara": { lat: 34.5263, lon: 74.2605 },
-    "Kathua": { lat: 32.3860, lon: 75.5174 },
-    "Pulwama": { lat: 33.8743, lon: 74.8980 },//🙏🏻🤲🏻
-    "Poonch": { lat: 33.7680, lon: 74.0924 },
-    "Rajouri": { lat: 33.3757, lon: 74.3146 },
-    //Major places in Ladakh 🗻⛰🌄
-    "Leh": { lat: 34.1526, lon: 77.5771 },
-    "Kargil": { lat: 34.5553, lon: 76.1258 },
-    "Nubra": { lat: 34.5869, lon: 77.0415 },
-    "Diskit": { lat: 34.5637, lon: 77.5536 },
-    "Turtuk": { lat: 34.8478, lon: 76.8220 },
-    "Hanle": { lat: 32.8142, lon: 78.9555 },//🌌🌟⭐✨
-    "Dras": { lat: 34.4300, lon: 75.7497 },
-    "Padum": { lat: 33.4657, lon: 76.8840 },
-    "Tangste": { lat: 34.1347, lon: 77.7124 },
-    "Changthang": { lat: 33.8000, lon: 78.5000 },
-    //major places in Arunachal pradesh
-    "Itanagar": { lat: 27.0844, lon: 93.6053 },
-    "Tawang": { lat: 27.5867, lon: 91.8644 },
-    "Ziro": { lat: 27.5946, lon: 93.8197 },
-    "Pasighat": { lat: 28.0667, lon: 95.3333 },
-    "Bomdila": { lat: 27.2644, lon: 92.4191 },
-    "Roing": { lat: 28.1333, lon: 95.8333 },
-    "Tezu": { lat: 27.9122, lon: 96.1289 },
-    "Along": { lat: 28.1652, lon: 94.8000 },
-    "Daporijo": { lat: 27.9893, lon: 94.2226 },
-    "Seppa": { lat: 27.3333, lon: 93.0167 },
-    //Major places in Manipur 
-    "Imphal": { lat: 24.8170, lon: 93.9368 },
-    "Thoubal": { lat: 24.6381, lon: 93.9964 },
-    "Bishnupur": { lat: 24.6100, lon: 93.7546 },
-    "Churachandpur": { lat: 24.3335, lon: 93.6766 },
-    "Kakching": { lat: 24.4966, lon: 93.9813 },
-    "Ukhrul": { lat: 25.1026, lon: 94.3630 },
-    "Senapati": { lat: 25.2762, lon: 94.0165 },
-    "Tamenglong": { lat: 24.9854, lon: 93.5072 },
-    "Jiribam": { lat: 24.8000, lon: 93.1167 },
-    "Moreh": { lat: 24.2333, lon: 94.2833 },
-    //Major cities in Meghalaya
-    "Shillong": { lat: 25.5788, lon: 91.8933 },
-    "Tura": { lat: 25.5143, lon: 90.2043 },
-    "Nongstoin": { lat: 25.5170, lon: 91.2640 },
-    "Jowai": { lat: 25.4549, lon: 92.1985 },
-    "Baghmara": { lat: 25.1934, lon: 90.6252 },
-    "Resubelpara": { lat: 25.9096, lon: 90.5940 },
-    "Williamnagar": { lat: 25.5370, lon: 90.6172 },
-    "Cherrapunji": { lat: 25.2840, lon: 91.7219 },
-    "Mairang": { lat: 25.5616, lon: 91.6357 },
-    //Major places in Nagaland
-    "Kohima": { lat: 25.6747, lon: 94.1100 },
-    "Dimapur": { lat: 25.9063, lon: 93.7276 },
-    "Mokokchung": { lat: 26.3246, lon: 94.5186 },
-    "Tuensang": { lat: 26.2673, lon: 94.8270 },
-    "Mon": { lat: 26.7395, lon: 95.0550 },
-    "Wokha": { lat: 26.0958, lon: 94.2621 },
-    "Zunheboto": { lat: 26.0143, lon: 94.5126 },
-    "Phek": { lat: 25.6667, lon: 94.5000 },
-    "Kiphire": { lat: 25.8820, lon: 94.7769 },
-    "Longleng": { lat: 26.5213, lon: 94.8333 },
-    //major places in Sikkim
-    "Gangtok": { lat: 27.3314, lon: 88.6138 },
-    "Namchi": { lat: 27.1751, lon: 88.3632 },
-    "Gyalshing": { lat: 27.2891, lon: 88.2644 },
-    "Mangan": { lat: 27.5257, lon: 88.5303 },
-    "Rangpo": { lat: 27.1767, lon: 88.5333 },
-    "Jorethang": { lat: 27.0935, lon: 88.3286 },
-    "Ravangla": { lat: 27.3080, lon: 88.3689 },
-    "Pakyong": { lat: 27.2241, lon: 88.5905 },
-    //Major places in Tripura
-    "Agartala": { lat: 23.8315, lon: 91.2868 },
-    "Dharmanagar": { lat: 24.3663, lon: 92.1711 },
-    "Udaipur": { lat: 23.5306, lon: 91.4870 },
-    "Kailashahar": { lat: 24.3217, lon: 92.0126 },
-    "Ambassa": { lat: 23.9250, lon: 91.8537 },
-    "Belonia": { lat: 23.2510, lon: 91.4542 },
-    "Khowai": { lat: 24.0811, lon: 91.5998 },
-    //Major places in Chattisgarh
-    "Raipur": { lat: 21.2514, lon: 81.6296 },
-    "Bhilai": { lat: 21.2060, lon: 81.4285 },
-    "Durg": { lat: 21.1904, lon: 81.2849 },
-    "Bilaspur": { lat: 22.0796, lon: 82.1391 },
-    "Korba": { lat: 22.3593, lon: 82.7501 },
-    "Raigarh": { lat: 21.8974, lon: 83.3941 },
-    "Jagdalpur": { lat: 19.0748, lon: 82.0089 },
-    "Ambikapur": { lat: 23.1189, lon: 83.1951 },
-    "Dhamtari": { lat: 20.7074, lon: 81.5480 },
-    "Mahasamund": { lat: 21.1060, lon: 82.0983 },
-    //Major places in Goa
-    "Panaji": { lat: 15.4909, lon: 73.8278 },
-    "Margao": { lat: 15.2993, lon: 73.9580 },
-    "Vasco da Gama": { lat: 15.3860, lon: 73.8440 },
-    "Mapusa": { lat: 15.5933, lon: 73.8180 },
-    "Ponda": { lat: 15.4034, lon: 74.0150 },
-    //Major places in Andaman & Nicobar 
-    "Port Blair": { lat: 11.6234, lon: 92.7265 },
-    "Havelock Island": { lat: 11.9670, lon: 93.0031 },
-    "Neil Island": { lat: 11.8310, lon: 93.0383 },
-    "Little Andaman": { lat: 10.6980, lon: 92.5640 },
-    "Car Nicobar": { lat: 9.1650, lon: 92.7540 },
-    "Great Nicobar": { lat: 6.9489, lon: 93.5470 },
-    //Major places in Lakshadweep
-    "Kavaratti": { lat: 10.5593, lon: 72.6358 },
-    "Agatti Island": { lat: 10.8421, lon: 72.1944 },
-    "Bangaram Island": { lat: 10.9481, lon: 72.2875 },
-    "Minicoy": { lat: 8.3000, lon: 73.0500 },
-    "Kalpeni": { lat: 10.0500, lon: 73.6450 },
-    "Amini": { lat: 11.1080, lon: 72.7330 },
-    "Andrott": { lat: 10.8236, lon: 73.0051 },
-    //Major places in Pondecherry
-    "Puducherry City": { lat: 11.9139, lon: 79.8145 },
-    "Karaikal": { lat: 10.9254, lon: 79.8380 },
-    "Mahe": { lat: 11.7000, lon: 75.5333 },
-    "Yanam": { lat: 16.7333, lon: 82.2167 },
-    //Major places in Dadra & Nagar Haveli and Daman & Diu
-    "Silvassa": { lat: 20.2739, lon: 72.9967 },  // Capital of Dadra & Nagar Haveli
-    "Daman": { lat: 20.3974, lon: 72.8328 },    // Capital of Daman & Diu
-    "Diu": { lat: 20.7146, lon: 70.9904 },      // Coastal town in Diu
-    "Amli": { lat: 20.2833, lon: 73.0167 },     // Industrial area near Silvassa
-    "Naroli": { lat: 20.2167, lon: 72.9667 },    // Small town in Dadra & Nagar Haveli
-        //damn India so big
-    //china
-    //Major cities in Guangdong
-    "Guangzhou": { lat: 23.1291, lon: 113.2644 },  // Capital of Guangdong
-    "Shenzhen": { lat: 22.5431, lon: 114.0579 },   // Tech hub, near Hong Kong
-    "Dongguan": { lat: 23.0207, lon: 113.7518 },   // Major manufacturing city
-    "Foshan": { lat: 23.0215, lon: 113.1214 },     // Famous for ceramics & Kung Fu
-    "Zhuhai": { lat: 22.2707, lon: 113.5767 },     // Coastal city near Macau
-    "Zhongshan": { lat: 22.5176, lon: 113.3926 },  // Historic trading city
-    "Jiangmen": { lat: 22.5787, lon: 113.0816 },   // "City of Overseas Chinese"
-    "Huizhou": { lat: 23.1115, lon: 114.4152 },    // Industrial & coastal city
-    "Shantou": { lat: 23.3541, lon: 116.6819 },    // Known for Chaoshan cuisine
-    "Zhanjiang": { lat: 21.1962, lon: 110.4039 },   // Southernmost city of Guangdong
-    //Major cities in Jiangsu
-    "Nanjing": { lat: 32.0603, lon: 118.7969 },   // Capital of Jiangsu
-    "Suzhou": { lat: 31.2989, lon: 120.5853 },    // Famous for classical gardens
-    "Wuxi": { lat: 31.4912, lon: 120.3119 },      // A mix of industry & nature
-    "Changzhou": { lat: 31.8107, lon: 119.9737 }, // Historic city with industry
-    "Nantong": { lat: 31.9791, lon: 120.8943 },   // Near Yangtze River
-    "Yangzhou": { lat: 32.3936, lon: 119.4127 },  // Famous for food & culture
-    "Zhenjiang": { lat: 32.1878, lon: 119.4250 }, // Scenic river city
-    "Taizhou": { lat: 32.4855, lon: 119.9101 },   // Growing industrial hub
-    "Xuzhou": { lat: 34.2044, lon: 117.2857 },    // Northern Jiangsu city
-    "Yancheng": { lat: 33.3936, lon: 120.1339 },   // Known for nature reserves
-    //Major cities in idk Alibaba?
-    "Hangzhou": { lat: 30.2741, lon: 120.1551 },   // Capital, home of Alibaba
-    "Ningbo": { lat: 29.8683, lon: 121.5439 },     // Major port city
-    "Wenzhou": { lat: 27.9943, lon: 120.6994 },    // Business hub
-    "Shaoxing": { lat: 30.0819, lon: 120.5715 },   // Famous for rice wine
-    "Jinhua": { lat: 29.1068, lon: 119.6495 },     // Cultural city
-    "Taizhou": { lat: 28.6564, lon: 121.4208 },    // Coastal industry city
-    "Huzhou": { lat: 30.8943, lon: 120.0869 },     // Known for silk
-    "Lishui": { lat: 28.4676, lon: 119.9229 },     // Scenic mountains & rivers
-    "Zhoushan": { lat: 29.9853, lon: 122.2072 },   // Island city
-    "Quzhou": { lat: 28.9545, lon: 118.8758 },      // Historic sites
-    //Major cities in Heilongjiang 
-    "Harbin": { lat: 45.8038, lon: 126.5350 },
-    "Qiqihar": { lat: 47.3395, lon: 123.9512 },
-    "Mudanjiang": { lat: 44.5861, lon: 129.6233 },
-    "Jiamusi": { lat: 46.7998, lon: 130.3181 },
-    "Daqing": { lat: 46.5833, lon: 125.0000 },
-    "Heihe": { lat: 50.2441, lon: 127.4902 },
-    "Shuangyashan": { lat: 46.6460, lon: 131.1580 },
-    "Hegang": { lat: 47.3499, lon: 130.2979 },
-    "Yichun": { lat: 47.7235, lon: 128.8753 },
-    "Jixi": { lat: 45.3011, lon: 130.9572 },
-    //Major District in Beijing(Direct controlled)
-    "Dongcheng": { lat: 39.9288, lon: 116.4163 }, // Historic district (Forbidden City, Tiananmen)
-    "Xicheng": { lat: 39.9123, lon: 116.3664 }, // Financial district
-    "Chaoyang": { lat: 39.9219, lon: 116.4435 }, // Business and embassy area
-    "Haidian": { lat: 39.9593, lon: 116.2981 }, // University and tech hub
-    "Fengtai": { lat: 39.8586, lon: 116.2871 }, // Industrial and residential district
-    "Shijingshan": { lat: 39.9143, lon: 116.1844 }, // Western district with scenic parks
-    "Tongzhou": { lat: 39.9098, lon: 116.6586 }, // New urban center
-    "Shunyi": { lat: 40.1250, lon: 116.6564 }, // Airport district
-    "Daxing": { lat: 39.7269, lon: 116.3414 }, // Home of Beijing Daxing International Airport
-    //Major districts in Shanghai
-    "Huangpu": { lat: 31.2317, lon: 121.4845 },  // Historic center (The Bund, Nanjing Road)
-    "Xuhui": { lat: 31.1885, lon: 121.4365 },  // High-end residential & commercial area
-    "Changning": { lat: 31.2200, lon: 121.4246 },  // Home to Hongqiao Airport
-    "Jing'an": { lat: 31.2270, lon: 121.4506 },  // Business & shopping district
-    "Putuo": { lat: 31.2559, lon: 121.3984 },  // Residential & tech hub
-    "Hongkou": { lat: 31.2708, lon: 121.5060 },  // Historic Jewish quarter, football culture
-    "Yangpu": { lat: 31.2596, lon: 121.5252 },  // Home to top universities like Fudan
-    "Minhang": { lat: 31.1130, lon: 121.3817 },  // Industrial & suburban area
-    "Baoshan": { lat: 31.3989, lon: 121.4890 },  // Shipping & logistics hub
-    "Jiading": { lat: 31.3748, lon: 121.2662 },  // Automotive & racing industry
-    "Pudong": { lat: 31.2225, lon: 121.5444 },  // Home to Lujiazui (Shanghai Tower, Pearl Tower)
-    "Songjiang": { lat: 31.0322, lon: 121.2264 },  // Cultural & suburban district
-    "Qingpu": { lat: 31.1512, lon: 121.1240 },  // Natural parks & water towns
-    "Fengxian": { lat: 30.9213, lon: 121.4741 },  // Growing residential area
-    "Jinshan": { lat: 30.7450, lon: 121.3411 },  // Coastal district with beaches
-    //Mojor ditricts in Tianjin
-    "Tianjin": { lat: 39.3434, lon: 117.3616 },  // Major port city
-    "Heping": { lat: 39.1172, lon: 117.2166 },  // Central business district
-    "Hedong": { lat: 39.1260, lon: 117.2510 },  // Industrial & residential area
-    "Hexi": { lat: 39.1088, lon: 117.2231 },  // Financial district, Tianjin Museum
-    "Nankai": { lat: 39.1382, lon: 117.1744 },  // Education hub (Nankai University)
-    "Hebei": { lat: 39.1535, lon: 117.1960 },  // Historic European-style buildings
-    "Hongqiao": { lat: 39.1711, lon: 117.1455 },  // Transportation hub
-    "Dongli": { lat: 39.0861, lon: 117.3144 },  // Residential & industrial district
-    "Xiqing": { lat: 39.0510, lon: 117.0093 },  // Home to Jinnan Economic Zone
-    "Jinnan": { lat: 38.9915, lon: 117.3931 },  // Developing high-tech zone
-    "Beichen": { lat: 39.2577, lon: 117.1344 },  // Industrial and residential area
-    "Wuqing": { lat: 39.3839, lon: 117.0123 },  // High-speed rail link to Beijing
-    "Baodi": { lat: 39.7176, lon: 117.3070 },  // Agriculture and logistics hub
-    "Binhai": { lat: 39.0035, lon: 117.7108 },  // Coastal economic free trade zone
-    "Jinghai": { lat: 38.9460, lon: 116.9740 },  // Rural & industrial district
-    "Ninghe": { lat: 39.3289, lon: 117.8270 },   // Agricultural and wetland area
-    //Major District in Chongqing
-    "Chongqing": { lat: 29.5630, lon: 106.5516 },  // Major inland metropolis
-    "Yuzhong": { lat: 29.5527, lon: 106.5686 },  // City center, Jiefangbei CBD
-    "Jiangbei": { lat: 29.6066, lon: 106.5744 },  // Financial district, Guanyinqiao
-    "Shapingba": { lat: 29.5650, lon: 106.4671 },  // Education hub, Chongqing University
-    "Nan'an": { lat: 29.5340, lon: 106.5649 },  // Riverside area with skyline views
-    "Dadukou": { lat: 29.4901, lon: 106.4804 },  // Industrial base, Yangtze River port
-    "Jiulongpo": { lat: 29.5028, lon: 106.5112 },  // High-tech and industrial zone
-    "Beibei": { lat: 29.8276, lon: 106.4376 },  // Mountainous district, known for hot springs
-    "Yubei": { lat: 29.7170, lon: 106.6312 },  // Chongqing Jiangbei International Airport
-    "Banan": { lat: 29.4026, lon: 106.5410 },  // Residential and scenic area
-    "Changshou": { lat: 29.8579, lon: 107.1473 },  // Home to Changshou Lake
-    "Hechuan": { lat: 30.0046, lon: 106.2642 },  // Historical town near Jialing River
-    "Fuling": { lat: 29.7031, lon: 107.3893 },  // Famous for Fuling pickles
-    "Wanzhou": { lat: 30.8079, lon: 108.4087 },  // Key Yangtze River port city
-    "Qianjiang": { lat: 29.5332, lon: 108.7825 },  // Southeastern district with rich culture
-    "Tongliang": { lat: 29.8496, lon: 106.0562 },  // Known for dragon dance tradition
-    "Tongnan": { lat: 30.1736, lon: 105.8396 },  // Agricultural and commercial hub
-    "Dazu": { lat: 29.7005, lon: 105.7217 },  // Famous for Dazu Rock Carvings
-    "Rongchang": { lat: 29.4712, lon: 105.5944 },  // Traditional pottery-making center
-    "Yunyang": { lat: 30.9305, lon: 108.6974 },  // Yangtze River scenic town
-    "Wushan": { lat: 31.0775, lon: 109.8773 },  // Home to the stunning Three Gorges
-    "Fengjie": { lat: 31.0504, lon: 109.4646 },  // Another major scenic area
-    //Major cities in Shandong Province
-    "Jinan": { lat: 36.6512, lon: 117.1201 },  // Capital of Shandong, "City of Springs"
-    "Qingdao": { lat: 36.0671, lon: 120.3826 },  // Coastal city, home to Tsingtao Beer
-    "Yantai": { lat: 37.4638, lon: 121.4479 },  // Seaside city known for wine production
-    "Weifang": { lat: 36.7069, lon: 119.1618 },  // "World Capital of Kites"
-    "Zibo": { lat: 36.8067, lon: 118.0170 },  // Industrial and ceramic hub
-    "Jining": { lat: 35.4140, lon: 116.5872 },  // Near Qufu, hometown of Confucius
-    "Linyi": { lat: 35.1041, lon: 118.3564 },  // Largest city in Shandong by area
-    "Dezhou": { lat: 37.4341, lon: 116.3575 },  // Energy and solar power industry
-    "Rizhao": { lat: 35.4164, lon: 119.5269 },  // Coastal city, great beaches
-    "Dongying": { lat: 37.4336, lon: 118.6744 },  // Home to China's second-largest oil field
-    "Binzhou": { lat: 37.3810, lon: 117.9707 },  // Important agricultural city
-    "Tai'an": { lat: 36.2002, lon: 117.0876 },  // Home to Mount Tai, a sacred mountain
-    "Liaocheng": { lat: 36.4558, lon: 115.9855 },  // Famous for canals and historic sites
-    "Heze": { lat: 35.2336, lon: 115.4807 },  // China's "Peony Capital"
-    "Zaozhuang": { lat: 34.8647, lon: 117.5542 },  // Known for historical battle sites
-    //Major cities in Sichuan 
-    "Chengdu": { lat: 30.5728, lon: 104.0668 },  // Capital, known for pandas & spicy food
-    "Mianyang": { lat: 31.4675, lon: 104.6796 },  // Tech and defense industry hub
-    "Deyang": { lat: 31.1269, lon: 104.3979 },  // Industrial city with historic temples
-    "Luzhou": { lat: 28.8821, lon: 105.4401 },  // Famous for Baijiu (Chinese liquor)
-    "Zigong": { lat: 29.3392, lon: 104.7784 },  // Known for its salt industry & dinosaur museum
-    "Panzhihua": { lat: 26.5823, lon: 101.7186 },  // Mining and steel production hub
-    "Neijiang": { lat: 29.5871, lon: 105.0639 },  // Famous for sweet oranges
-    "Suining": { lat: 30.5329, lon: 105.5927 },  // Cultural city with Buddhist heritage
-    "Leshan": { lat: 29.5521, lon: 103.7659 },  // Home to the famous Giant Buddha
-    "Meishan": { lat: 30.0572, lon: 103.8381 },  // Known for tea production
-    "Ya'an": { lat: 29.9805, lon: 103.0133 },  // Major panda conservation area
-    "Guang'an": { lat: 30.4675, lon: 106.6336 },  // Birthplace of Deng Xiaoping
-    "Dazhou": { lat: 31.2142, lon: 107.5009 },  // Important transportation hub
-    "Yibin": { lat: 28.7599, lon: 104.6405 },  // Located at the junction of major rivers
-    "Bazhong": { lat: 31.8588, lon: 106.7537 },  // Scenic city with mountains & rivers
-    "Ziyang": { lat: 30.1211, lon: 104.6390 },  // Emerging economic zone in Sichuan
-    
 
-    
-
-
-    //small-!capital!
-    "new York": { lat: 40.7128, lon: -74.0060 },
-    "los Angeles": { lat: 34.0522, lon: -118.2437 },
-    "chicago": { lat: 41.8781, lon: -87.6298 }, 
-    "houston": { lat: 29.7604, lon: -95.3698 },
-    "london": { lat: 51.5074, lon: -0.1278 },
-    "paris": { lat: 48.8566, lon: 2.3522 },
-    "berlin": { lat: 52.5200, lon: 13.4050 },
-    "madrid": { lat: 40.4168, lon: -3.7038 },
-    "rome": { lat: 41.9028, lon: 12.4964 },
-    "tokyo": { lat: 35.6895, lon: 139.6917 },
-    "seoul": { lat: 37.5665, lon: 126.9780 },
-    "shanghai": { lat: 31.2304, lon: 121.4737 },
-    "beijing": { lat: 39.9042, lon: 116.4074 },
-    "sydney": { lat: -33.8688, lon: 151.2093 },
-    "toronto": { lat: 43.651070, lon: -79.347015 },
-    "dubai": { lat: 25.276987, lon: 55.296249 },
-    "moscow": { lat: 55.7558, lon: 37.6173 },
-    "mumbai": { lat: 19.0760, lon: 72.8777 },
-    "delhi": { lat: 28.6139, lon: 77.2090 },
-    "singapore": { lat: 1.3521, lon: 103.8198 },
-    "bangkok": { lat: 13.7563, lon: 100.5018 },
-    "istanbul": { lat: 41.0082, lon: 28.9784 },
-    "mexico City": { lat: 19.4326, lon: -99.1332 },
-    "buenos Aires": { lat: -34.6037, lon: -58.3816 },
-    "cairo": { lat: 30.0444, lon: 31.2357 },
-    "cape Town": { lat: -33.9249, lon: 18.4241 },
-    "wellington": {lat: -41.2865,lon: 174.7762},
-    //Major Indian cities
-    "bangalore": { lat: 12.9716, lon: 77.5946 },
-    "chennai": { lat: 13.0827, lon: 80.2707 },
-    "kolkata": { lat: 22.5726, lon: 88.3639 },
-    "hyderabad": { lat: 17.3850, lon: 78.4867 },
-    "pune": { lat: 18.5204, lon: 73.8567 },
-    "ahmedabad": { lat: 23.0225, lon: 72.5714 },
-    "jaipur": { lat: 26.9124, lon: 75.7873 },
-    "lucknow": { lat: 26.8467, lon: 80.9462 },
-    // Major cities in China
-    "beijing": { lat: 39.9042, lon: 116.4074 },
-    "shanghai": { lat: 31.2304, lon: 121.4737 },
-    "guangzhou": { lat: 23.1291, lon: 113.2644 },
-    "shenzhen": { lat: 22.5431, lon: 114.0579 },
-    "chengdu": { lat: 30.5728, lon: 104.0668 },
-    "wuhan": { lat: 30.5928, lon: 114.3055 },
-    "chongqing": { lat: 29.4316, lon: 106.9123 },
-    "tianjin": { lat: 39.3434, lon: 117.3616 },
-    "nanjing": { lat: 32.0603, lon: 118.7969 },
-    "hangzhou": { lat: 30.2741, lon: 120.1551 },
-    //Major cities in Gujarat
-    "surat": { lat: 21.1702, lon: 72.8311 },
-    "vadodara": { lat: 22.3072, lon: 73.1812 },
-    "rajkot": { lat: 22.3039, lon: 70.8022 },
-    "bhavnagar": { lat: 21.7645, lon: 72.1519 },
-    "jamnagar": { lat: 22.4707, lon: 70.0577 },
-    "gandhinagar": { lat: 23.2156, lon: 72.6369 },
-    "junagadh": { lat: 21.5222, lon: 70.4579 },
-    "anand": { lat: 22.5645, lon: 72.9289 },
-    "bharuch": { lat: 21.7051, lon: 72.9959 },
-    "mehsana": { lat: 23.5879, lon: 72.3693 },
-    "navsari": { lat: 20.9467, lon: 72.9520 },
-    "morbi": { lat: 22.8119, lon: 70.8236 },
-    "valsad": { lat: 20.5992, lon: 72.9342 },
-    "porbandar": { lat: 21.6417, lon: 69.6293 }
-
-
-
-    
-};
 
 
 
 
 document.getElementById("button").addEventListener("click", () => {
-    const city = document.getElementById("search").value.trim();  
-
-    if (cityCoordinates[city]) {
-        const { lat, lon } = cityCoordinates[city];
-
-        // Fetch weather data
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
+    const city = document.getElementById("search").value.trim();
+    
+    if (city) {
+        fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=en&format=json`)
             .then(response => response.json())
             .then(data => {
-                console.log("Weather Data:", data);
-                
-                const temperature = data.current_weather.temperature;
-                const weatherCode = data.current_weather.weathercode;  
+                if (data.results && data.results.length > 0) {
+                    const { latitude, longitude } = data.results[0];
 
-                document.getElementById("des").innerHTML = `${temperature}°C`;  
-
-                const iconClass = getWeatherIcon(weatherCode, temperature);
-                const weatherCondition = getWeatherDescription(weatherCode);
-
-              
-                document.getElementById("temp").innerHTML = `<i class="${iconClass}"></i>`;
-
-             
-                document.querySelector(".all-summary").innerHTML = 
-                    `According to Open-Meteo, the weather in <strong>${city}</strong> will be around  <strong>${temperature}°C</strong>.`;
+                    // Fetch weather data using the obtained coordinates
+                    fetchWeather(latitude, longitude, city);
+                } else {
+                    alert("City not found. Please try another city.");
+                }
             })
-            .catch(error => console.error("Error fetching weather data:", error));
+            .catch(error => console.error("Error fetching city coordinates:", error));
     } else {
-        alert("City data currently unavailable.");
+        alert("Please enter a city name.");
     }
 });
 
+function fetchWeather(lat, lon, city) {
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
+        .then(response => response.json())
+        .then(data => {
+            console.log("Weather Data:", data);
+            
+            const temperature = data.current_weather.temperature;
+            const weatherCode = data.current_weather.weathercode;  
 
+            document.getElementById("des").innerHTML = `${temperature}°C`;  
+
+            const iconClass = getWeatherIcon(weatherCode, temperature);
+            const weatherCondition = getWeatherDescription(weatherCode);
+
+            document.getElementById("temp").innerHTML = `<i class="${iconClass}"></i>`;
+
+            document.querySelector(".all-summary").innerHTML = 
+                `According to Open-Meteo, the weather in <strong>${city}</strong> will be around <strong>${temperature}°C</strong>.`;
+        })
+        .catch(error => console.error("Error fetching weather data:", error));
+}
+
+// Function to determine the weather icon based on weatherCode and temperature
 function getWeatherIcon(weatherCode, temperature) {
     if (weatherCode >= 95) return "fa-solid fa-cloud-bolt"; 
     if (weatherCode >= 80) return "fa-solid fa-cloud-showers-heavy"; 
@@ -741,14 +161,13 @@ function getWeatherIcon(weatherCode, temperature) {
     if (weatherCode >= 30) return "fa-solid fa-snowflake"; 
     if (weatherCode >= 20) return "fa-solid fa-wind"; 
     
-    
     if (temperature >= 30) return "fa-solid fa-sun"; 
     if (temperature >= 20) return "fa-solid fa-cloud-sun"; 
     if (temperature >= 10) return "fa-solid fa-cloud-sun"; 
     return "fa-solid fa-snowflake"; 
 }
 
-
+// Function to return weather description based on weatherCode
 function getWeatherDescription(weatherCode) {
     if (weatherCode >= 95) return "stormy with thunderstorms ⛈️";
     if (weatherCode >= 80) return "rainy 🌧️";
@@ -758,8 +177,13 @@ function getWeatherDescription(weatherCode) {
     if (weatherCode >= 40) return "cloudy ☁️";
     if (weatherCode >= 30) return "snowy ❄️";
     if (weatherCode >= 20) return "windy 💨";
-    return "Clear"
+    return "Clear";
 }
+
+
+    
+    
+
 
 document.getElementById("icon-c").addEventListener("click", () => {
     const url = window.location.href; // Get current page URL
